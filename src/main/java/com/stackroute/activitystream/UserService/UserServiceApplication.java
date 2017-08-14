@@ -12,6 +12,7 @@ import com.stackroute.activitystream.model.User;
 
 
 @SpringBootApplication(scanBasePackages={"com.stackroute.activitystream"})
+//why is @EntityScan annotation required?
 @EntityScan(basePackages={"com.stackroute.activitystream.model"})
 public class UserServiceApplication {
 
