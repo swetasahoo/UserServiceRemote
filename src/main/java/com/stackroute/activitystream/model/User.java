@@ -24,7 +24,10 @@ public class User extends ResourceSupport implements Serializable {
 	private String address;
 	private boolean active;
 	private String phoneNo;
+
 	
+	
+
 	public User()
 	{
 		

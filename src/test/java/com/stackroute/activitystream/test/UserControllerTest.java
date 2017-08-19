@@ -49,6 +49,7 @@ public class UserControllerTest {
 
 	@Autowired
 	 UserDao userDAO;
+	
 	@Before
 	public void setup() throws Exception {
 	    this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
@@ -80,7 +81,7 @@ public class UserControllerTest {
 		user.setEmailId("sweta@gmail.com");
 		user.setPassword("password");
 		
-		mockMvc.perform(post("http://localhost:9012/api/user/authenticate").content(asJsonString(user)).contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("http://localhost:9012/api/user/login").content(asJsonString(user)).contentType(MediaType.APPLICATION_JSON)
 				  .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 		
 	}
@@ -91,11 +92,11 @@ public class UserControllerTest {
 		user.setEmailId("swe@gmail.com");
 		user.setPassword("password");
 		
-		mockMvc.perform(post("http://localhost:9012/api/user/authenticate").content(asJsonString(user)).contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("http://localhost:9012/api/user/login").content(asJsonString(user)).contentType(MediaType.APPLICATION_JSON)
 				  .accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
 		
 	}
-	@Ignore
+
 	@Test
 	public void testGetUser_NOError() throws Exception
 	{
@@ -110,21 +111,21 @@ public class UserControllerTest {
 	public void testGetUser_Error() throws Exception
 	{
 		User user=new User();
-		user.setEmailId("sweta@gmail");
+		user.setEmailId("swet@gmail");
 		mockMvc.perform(post("http://localhost:9012/api/user/getUser").content(asJsonString(user)).contentType(MediaType.APPLICATION_JSON)
 				  .accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
 		
 	}
-	@Ignore
+@Ignore
 	@Test
 	public void testCreateUser_NOError() throws Exception
 	{
 		User user=new User();
-		user.setEmailId("mitali@gmail.com");
+		user.setEmailId("amit@gmail.com");
 		user.setPassword("p@ssword");
-		user.setAddress("mumbai");
+		user.setAddress("combaiture");
 		user.setPhoneNo("9963256333");
-		user.setName("Mitali");
+		user.setName("Vijay");
 		
 		
 		mockMvc.perform(post("http://localhost:9012/api/user/create").content(asJsonString(user)).contentType(MediaType.APPLICATION_JSON)

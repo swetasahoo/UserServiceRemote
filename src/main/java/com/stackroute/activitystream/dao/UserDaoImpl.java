@@ -37,9 +37,10 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 			user.setActive();
+			
 			sessionFactory.getCurrentSession().save(user);
-
 			return true;
+			
 		} catch (HibernateException e) {
 
 			e.printStackTrace();

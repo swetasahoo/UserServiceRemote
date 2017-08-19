@@ -12,22 +12,21 @@ public class UserLogger {
 	private long start;
 	private Object proceed;
 
-    private long executionTime;
-    
-@Before("execution(public * getAllUser())")
-    public void logStartTime() throws Throwable {
-        start= System.currentTimeMillis();
-        // proceed = joinPoint.proceed();      
-         System.out.println("Start time:"+start);   
-    }
+	private long executionTime;
 
-@After("execution(public * getAllUser())")
-public Object logEndTime() throws Throwable {
-	executionTime = System.currentTimeMillis() - start;
-    System.out.println(" executed in " + executionTime + "ms");
-    return proceed;
+	@Before("execution( * com.stackroute.activitystream.restcontroller.*.*(..))")
+	public void logStartTime() throws Throwable {
+		start = System.currentTimeMillis();
+		// proceed = joinPoint.proceed();
+		System.out.println("Start time:" + start);
+	}
 
-}
+	@After("execution( * com.stackroute.activitystream.restcontroller.*.*(..))")
+	public Object logEndTime() throws Throwable {
+		executionTime = System.currentTimeMillis() - start;
+		System.out.println(" executed in " + executionTime + "ms");
+		return proceed;
 
+	}
 
 }
